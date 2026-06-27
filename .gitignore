@@ -1,0 +1,15 @@
+# Environment variables ? NEVER commit
+.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# RAG vector store
+app/rag/chroma_store/
+
+# IDE
+.vscode/
+.idea/
