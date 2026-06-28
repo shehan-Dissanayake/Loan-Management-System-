@@ -1,16 +1,13 @@
-<<<<<<< HEAD
-# Loan-Management-System-
-=======
----
+﻿---
 title: Rohana Credit Backend
-emoji: 💻
-colorFrom: green
-colorTo: blue
+colorFrom: blue
+colorTo: purple
 sdk: docker
 pinned: false
-license: mit
-short_description: 'loan managmet system '
+app_port: 7860
 ---
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
->>>>>>> e842c30bc5e93ce0869719472715c026cfbd2c9f
+# Rohana Credit Backend API
+
+FastAPI backend for the Rohana Credit loan management system.
+Built with FastAPI, PostgreSQL (Supabase), and RAG-powered AI assistant.
