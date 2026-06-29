@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from app.api.v1 import auth, customers, loans, payments, reports, chat
 from app.rag.rag_engine import preload as preload_rag
@@ -27,6 +28,6 @@ app.include_router(chat.router, prefix="/api/v1")
 def startup_event():
     preload_rag()
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 def health_check():
     return {"status": "ok"}
