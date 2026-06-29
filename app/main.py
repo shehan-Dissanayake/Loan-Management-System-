@@ -8,10 +8,13 @@ app = FastAPI(title="Credit Loan Management System API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://loan-management-system-frontend-two.vercel.app",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 app.include_router(auth.router, prefix="/api/v1")
 app.include_router(customers.router, prefix="/api/v1")
