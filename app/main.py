@@ -27,6 +27,6 @@ app.include_router(chat.router, prefix="/api/v1")
 def startup_event():
     preload_rag()
 
-@app.api_route("/health", methods=["GET", "HEAD"])
+@app.get("/health")
 def health_check():
     return JSONResponse(content={"status": "ok"})
