@@ -12,10 +12,9 @@ app.add_middleware(
     allow_origins=[
         "https://loan-management-system-frontend-two.vercel.app",
     ],
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
     allow_headers=["*"],
 )
-
 
 app.include_router(auth.router, prefix="/api/v1")
 app.include_router(customers.router, prefix="/api/v1")
