@@ -30,4 +30,4 @@ def startup_event():
 
 @app.api_route("/health", methods=["GET", "HEAD"])
 def health_check():
-    return {"status": "ok"}
+    return JSONResponse(content={"status": "ok"})
