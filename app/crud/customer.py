@@ -36,6 +36,17 @@ def update_customer(db: Session, customer: Customer, customer_in: CustomerUpdate
     return customer
 
 
+from fastapi import HTTPException
+from sqlalchemy.exc import IntegrityError
+
 def delete_customer(db: Session, customer: Customer) -> None:
-    db.delete(customer)
-    db.commit()
+    try:
+        db.delete(customer)
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=400,
+            detail="This customer has loan history and cannot be deleted. "
+                   "Customers with any loans (active, completed, or deactivated) are kept for financial record-keeping.",
+        )
