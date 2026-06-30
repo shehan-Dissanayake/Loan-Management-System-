@@ -9,6 +9,7 @@ from app.models.payment import Payment
 from app.models.loan import Loan
 from app.schemas.payment import PaymentCreate
 from app.services.arrears_calculator import calculate_arrears
+from app.crud.holiday import get_holiday_dates_set
 
 
 def get_payments_for_loan(db: Session, loan_id: uuid.UUID) -> list[Payment]:
@@ -116,7 +117,8 @@ def get_loan_summary(db: Session, loan: Loan) -> dict:
     for p in payments:
         payments_by_date[p.payment_date] = payments_by_date.get(p.payment_date, Decimal("0")) + p.amount_collected
 
-    arrears = calculate_arrears(loan.disbursed_date, loan.installment_amount, payments_by_date)
+    holidays = get_holiday_dates_set(db)
+    arrears = calculate_arrears(loan.disbursed_date, loan.installment_amount, payments_by_date, holidays)
 
     return {
         **loan.__dict__,

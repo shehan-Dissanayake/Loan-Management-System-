@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.api.v1 import auth, customers, loans, payments, reports, chat
+from app.api.v1 import auth, customers, loans, payments, reports, chat, holidays
 from app.rag.rag_engine import preload as preload_rag
 
 app = FastAPI(title="Credit Loan Management System API")
@@ -22,6 +22,8 @@ app.include_router(loans.router, prefix="/api/v1")
 app.include_router(payments.router, prefix="/api/v1")
 app.include_router(reports.router, prefix="/api/v1")
 app.include_router(chat.router, prefix="/api/v1")
+app.include_router(holidays.router, prefix="/api/v1")
+
 
 @app.on_event("startup")
 def startup_event():
